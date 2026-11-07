@@ -6,6 +6,11 @@ on:
       - main
       - 'feature/*'
 
+env:
+    MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superData'
+    MONGO_USERNAME: ${{vars.MONGO_USERNAME}}            
+    MONGO_PASSWORD: ${{secrets.MONGO_PASSWORD}}             
+
 jobs:
   test-program:
     name: program test
@@ -26,5 +31,11 @@ jobs:
 
     - name: test the app
       run: npm test
+
+    - name: install test sheet
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: test-results.xml
 
     
