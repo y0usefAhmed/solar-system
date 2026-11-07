@@ -1,0 +1,30 @@
+name: unit testing
+
+on:
+  push: 
+    branches:
+      - main
+      - 'feature/*'
+
+jobs:
+  test-program:
+    name: program test
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: checkout
+      uses: actions/checkout@v4
+
+    - name : setup nodejs
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    
+    - name: install req
+      run: npm install
+
+    - name: test the app
+      run: npm test
+
+    
