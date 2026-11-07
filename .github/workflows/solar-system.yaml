@@ -1,0 +1,14 @@
+name: test 
+
+on: 
+push:
+   branches:
+    - main
+    - 'feature/*'
+
+jobs:
+  test:
+   runs-on: ubuntu-lastest
+   steps:
+   - name: print test
+     run: echo "test"
