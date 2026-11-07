@@ -1,10 +1,10 @@
 name: unit testing
 
-# on:
-#   push: 
-#     branches:
-#       - main
-#       - 'feature/*'
+on:
+  push: 
+    branches:
+      - main
+      - 'feature/*'
 
 env:
     MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superData'
@@ -14,7 +14,14 @@ env:
 jobs:
   test-program:
     name: program test
-    runs-on: ubuntu-24.04
+    strategy:
+        matrix:
+          nodeversion: [18,19,20]
+          os: [ubuntu-24.04,windows-latest]
+          exclude:
+            - nodeversion: 19
+              os: windows-latest
+    runs-on: ${{matrix.os}}
 
     steps:
     
@@ -24,7 +31,7 @@ jobs:
     - name : setup nodejs
       uses: actions/setup-node@v7
       with:
-        node-version: 18
+        node-version: ${{matrix.nodeversion}}
     
     - name: install req
       run: npm install
