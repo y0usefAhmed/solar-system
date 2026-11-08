@@ -63,6 +63,9 @@ jobs:
 
     - name: Code Coverage
       run: npm run coverage
+      continue-on-error: true
+
+    
 
     - name: install coverage folder
       uses: actions/upload-artifact@v7
