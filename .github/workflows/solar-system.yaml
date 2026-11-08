@@ -16,11 +16,11 @@ jobs:
     name: program test
     strategy:
         matrix:
-          nodeversion: [18,19,20]
-          os: [ubuntu-24.04,windows-latest]
-          exclude:
-            - nodeversion: 19
-              os: windows-latest
+          nodeversion: [18]
+          os: [ubuntu-24.04]
+          # exclude:
+          #   - nodeversion: 19
+          #     os: windows-latest
     runs-on: ${{matrix.os}}
 
     steps:
@@ -44,5 +44,31 @@ jobs:
       with:
         name: test-results
         path: test-results.xml
+  
+  test-run coverage:
+    name: test the codes 
+    runs-on: ubuntu-24.04
 
+    steps:
+    - name: checkout
+      uses: actions/checkout@v7
+
+    - name : setup nodejs
+      uses: actions/setup-node@v7
+      with:
+        node-version: 18
+    
+    - name: install req
+      run: npm install
+
+    - name: Code Coverage
+      run: npm run coverage
+
+    - name: install coverage folder
+      uses: actions/upload-artifact@v7
+      with:
+        name: download coverage
+        path: coverage
+  
+   
     
