@@ -32,6 +32,12 @@ jobs:
       uses: actions/setup-node@v7
       with:
         node-version: ${{matrix.nodeversion}}
+
+    - name: Cache dependencies
+      uses: actions/cache@v6
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}    
     
     - name: install req
       run: npm install
