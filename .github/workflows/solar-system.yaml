@@ -108,6 +108,6 @@ jobs:
        -e MONGO_PASSWORD=$MONGO_PASSWORD \
        ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
        echo "-------------------------------------"
-       docker ps -o wide
+       docker ps 
        echo "-------------------------------------"
        docker inspect solar-system-app
