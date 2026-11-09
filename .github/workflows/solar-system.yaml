@@ -108,7 +108,7 @@ jobs:
        echo "-------------------------///////--------------------------------------------"
        docker inspect solar-system-app
        echo "-----------------------/////////------------------------------------------------------"
-       docker logs solar-system-ap
+       docker logs solar-system-app
       #  -p 3000:3000 \
       #  -e MONGO_URI=$MONGO_URI \
       #  -e MONGO_USERNAME=$MONGO_USERNAME \
