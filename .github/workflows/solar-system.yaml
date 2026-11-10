@@ -62,16 +62,27 @@ jobs:
   
   test-run-coverage:
     name: test the codes 
+    container:
+     image: node:18
+    services:
+      mongo-db:
+        image: siddharth67/mongo-db:non-prod
+        options:
+         --name mongo
+    env:
+      MONGO_URI: 'mongodb://mongo:27017/superData'
+      MONGO_USERNAME: non-prod-user            
+      MONGO_PASSWORD: non-prod-password 
     runs-on: ubuntu-24.04
 
     steps:
     - name: checkout
       uses: actions/checkout@v7
 
-    - name : setup nodejs
-      uses: actions/setup-node@v7
-      with:
-        node-version: 18
+    # - name : setup nodejs
+    #   uses: actions/setup-node@v7
+    #   with:
+    #     node-version: 18
     
     - name: install req
       run: npm install
