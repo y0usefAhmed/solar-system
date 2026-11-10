@@ -17,10 +17,10 @@ jobs:
     services:
       mongo-db:
         image: siddharth67/mongo-db:non-prod
-        env:
-          MONGO_URI: 'mongodb://localhost:27017/superData'
-          MONGO_USERNAME: non-prod-user            
-          MONGO_PASSWORD: non-prod-password 
+    env:
+      MONGO_URI: 'mongodb://localhost:27017/superData'
+      MONGO_USERNAME: non-prod-user            
+      MONGO_PASSWORD: non-prod-password 
     strategy:
         matrix:
           nodeversion: [18]
