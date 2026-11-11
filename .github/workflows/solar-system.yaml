@@ -142,3 +142,22 @@ jobs:
     #   with:
     #     push: true
     #     tags: ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}  
+
+
+  deploy-k8s:
+    needs:  login-puplish-dockerhub
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v7
+
+    - name: Install kubectl
+      uses: azure/setup-kubectl@v4
+      with:
+        version: 'latest'
+    
+    - name: test kubectl
+      run: |
+       kubectl version
+       echo "--------------------------------------"
+       kubectl get nodes
